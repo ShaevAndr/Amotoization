@@ -12,7 +12,7 @@
 >> PATH_TO_WIDGET_ZIP = путь к файлу widget.zip. Например "C:\\widget\\widget.zip"
 >>
 >> WIDGET_CLASS =  класс виджета на странице установленных интеграций. Например:"agitq3-7Fh6"
-
+>
 > Файл update.py:
 >> PATH = путь к каталогу с виджетом. Например "C:\\widget\\" (в папке widget лежат уже именно файлы виджета).
 
@@ -22,12 +22,12 @@
 >> Ссылка https://www.python.org/
 >>
 >> При установке дать согласие на запись Python в PATH
-
+>
 > Установка Selenium 
 >> В командной строке прописать pip install selenium
-
+>
 > Установка драйвера Chrome 
-
+>
 >> Из списка выбрать драйвер такой же версии, как и хром на компьютере https://chromedriver.storage.googleapis.com/index.html
 >>
 >> Распаковать в директорию со скриптами.
