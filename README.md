@@ -4,17 +4,24 @@
 ### Далее скрипт продолжает работать и ждёт следующей команды (нажатия Enter) для обновления.
 
 ## Настройки программы:
-> Файл serverUpdate.py:
+> Файл variables.json:
 >> EMAIL = 'почта@gmail.com'
 >>
 >> PASSWORD = "пароль"
 >>
->> PATH_TO_WIDGET_ZIP = путь к файлу widget.zip. Например "C:\\widget\\widget.zip"
+>> PATH_TO_WIDGET_ZIP = путь к файлу widget.zip. Например "C:\\widget\\widget.zip" ( в пути применять  "\\" вместо "\")
 >>
->> WIDGET_CLASS =  класс виджета на странице установленных интеграций. Например:"agitq3-7Fh6"
->
-> Файл update.py:
+>> WIDGET_CLASS =  alt свойства <img> в настройках-> установленные (картинка виджета (обычно совпадает с названием виджета)) 
+>>
 >> PATH = путь к каталогу с виджетом. Например "C:\\widget\\" (в папке widget лежат уже именно файлы виджета).
+>>
+>>"PATH_TO_WIDGET_ZIP": путь к widget.zip. например "C:\\widget\\widget.zip",
+
+
+> Файл serverUpdate.py:
+>>изменить на свой адресс (поменять субдомен) URL = "https://www.mysupertestaccount.amocrm.ru/"
+
+
 
 ## Установка:
 
