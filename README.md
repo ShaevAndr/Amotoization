@@ -31,7 +31,7 @@
 >> При установке дать согласие на запись Python в PATH
 >
 > Установка Selenium 
->> В командной строке прописать pip install selenium
+>> В командной строке прописать pip install selenium (в любом каталоге)
 >
 > Установка драйвера Chrome 
 >
@@ -41,6 +41,6 @@
 
 ## Запуск:
 
-> Запуск командой python serverUpdate.py
+> Запуск командой python serverUpdate.py из папки с приложением.
 
 
