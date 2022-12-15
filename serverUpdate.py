@@ -1,3 +1,4 @@
+import json
 import os
 import time
 from selenium import webdriver
@@ -5,16 +6,26 @@ from selenium.webdriver.common.by import By
 import update
 
 
+def load_data():
+    with open (os.path.join(os.path.dirname(__file__),"variables.json"), "r") as file:
+        variables = json.load(file)
+        return variables
+
 class Amo:
     URL = "https://www.mysupertestaccount.amocrm.ru/"
     SETTINGS_URL = "https://mysupertestaccount.amocrm.ru/amo-market/#category-installed"
     # Данные для ввода
-    EMAIL = '@gmail.com'
-    PASSWORD = "password"
-    PATH_TO_WIDGET_ZIP = "C:\\widget\\widget.zip"
-    WIDGET_CLASS = "agitq3-7Fh6"
+    # EMAIL = 'ashaev.reon@gmail.com'
+    # PASSWORD = "jh67^%U8"
+    # PATH_TO_WIDGET_ZIP = "C:\\widget\\widget.zip"
+    # WIDGET_CLASS = "agitq3-7Fh6"
 
-    def __init__(self) -> None:
+    def __init__(self, EMAIL, PASSWORD, PATH_TO_WIDGET_ZIP, WIDGET_CLASS) -> None:
+        self.EMAIL = EMAIL
+        self.PASSWORD = PASSWORD
+        self.PATH_TO_WIDGET_ZIP = PATH_TO_WIDGET_ZIP
+        self.WIDGET_CLASS = WIDGET_CLASS
+        
         self.path = os.path.join(os.path.dirname(__file__), 'chromedriver.exe')
         self.options = webdriver.ChromeOptions()
         self.options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36")
@@ -57,7 +68,7 @@ class Amo:
     def select_widget(self):
         self.driver.get(self.SETTINGS_URL)
         time.sleep(5)
-        self.driver.find_elements(By.CLASS_NAME, self.WIDGET_CLASS)[0].click()
+        self.driver.find_elements(By.CSS_SELECTOR, f'[title={self.WIDGET_CLASS}]')[-1].click()
 
     def close_connection(self):
         self.driver.close()
@@ -65,19 +76,26 @@ class Amo:
 
 def main():
     try:
-        connection = Amo()
+        variables = load_data()
+        connection = Amo(
+            EMAIL=variables["EMAIL"], 
+            PASSWORD=variables["PASSWORD"],
+            PATH_TO_WIDGET_ZIP=variables["PATH_TO_WIDGET_ZIP"],
+            WIDGET_CLASS=variables["WIDGET_CLASS"]
+            )
         connection.make_driver()
         connection.autorization()
         connection.select_widget()
+        PATH = variables["PATH"]
         while True:
             input("Нажмите Enter, когда требуется обновление")
-            update.modify_manifest()
-            update.remove_widget_zip()
-            update.add_files_to_archive()
+            update.modify_manifest(PATH)
+            update.remove_widget_zip(PATH)
+            update.add_files_to_archive(PATH)
             connection.update_widget()
 
     except Exception:
-        print(Exception)
+        print(Exception.with_traceback())
     except KeyboardInterrupt:
         print("Спасибо за использование программы :)")
 

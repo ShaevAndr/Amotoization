@@ -4,8 +4,8 @@ import json
 
 
 
-PATH = "C:\\widget"
-def modify_manifest():
+# PATH = "C:\\widget"
+def modify_manifest(PATH):
     with open(os.path.join(PATH, 'manifest.json'), 'r') as file:
         manifest = json.load(file)
 
@@ -18,7 +18,7 @@ def modify_manifest():
         json.dump(manifest, file)
 
 
-def remove_widget_zip():
+def remove_widget_zip(PATH):
     try:
         file_to_remove = os.path.join(PATH, "widget.zip")
         os.remove(file_to_remove)
@@ -26,7 +26,7 @@ def remove_widget_zip():
         print(Exception)
 
     
-def add_files_to_archive():
+def add_files_to_archive(PATH):
     archive = os.path.join(PATH, "widget.zip")
     with zipfile.ZipFile(archive, 'w') as zf:
         for folder, subfolders, files in os.walk(PATH):
